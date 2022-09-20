@@ -7,8 +7,9 @@ import java.io.IOException;
  * @version 1.0
  */
 public class ResourceMgr {
-    public static BufferedImage BoyR, BoyL,BoyU,BoyD;//人物移动动画
+    public static BufferedImage BoyR, BoyL,BoyU,BoyD,BoyZuo,BoyYou;//人物移动动画
 
+    public static BufferedImage[] waggle = new BufferedImage[3];//晃动动画 用数组播放3张照片
 
 
     static {//静态语句块
@@ -21,6 +22,9 @@ public class ResourceMgr {
             BoyD = ImageUtil.rotateImage(BoyL,0);
 
 
+            for (int i = 0; i < 3; i++) {
+                waggle[i]=ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/Boy"+(i+1)+".png"));
+            }
 
 
         } catch (IOException e) {
