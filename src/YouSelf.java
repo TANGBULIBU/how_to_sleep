@@ -5,9 +5,9 @@ import java.awt.*;
  * @version 1.0
  */
 public class YouSelf {
-    private int x,y;
-    private Dir dir=Dir.RIGHT;
-    private static final int SPEED=2;
+    private int x, y;
+    private Dir dir = Dir.RIGHT;
+    private static final int SPEED = 3;
     private RoomFrame rf = null;
 
     private boolean moving = true;
@@ -21,7 +21,7 @@ public class YouSelf {
         this.rf = rf;
     }
 
-    public  void paint(Graphics g) {
+    public void paint(Graphics g) {
         switch (dir) {
             case LEFT:
                 g.drawImage(ResourceMgr.BoyL, x, y, null);
@@ -30,17 +30,25 @@ public class YouSelf {
                 g.drawImage(ResourceMgr.BoyR, x, y, null);
                 break;
             case UP:
-                g.drawImage(ResourceMgr.BoyU, x, y, null);
+                if (this.dir == Dir.RIGHT) {
+                    g.drawImage(ResourceMgr.BoyR, x, y, null);
+                } else {
+                    g.drawImage(ResourceMgr.BoyL, x, y, null);
+                }
+//                g.drawImage(ResourceMgr.BoyU, x, y, null);
                 break;
             case DOWN:
                 g.drawImage(ResourceMgr.BoyD, x, y, null);
                 break;
 
-        }
-        move();
+
     }
 
-    private void move(){
+    move();
+
+}
+
+    private void move() {
         if (!moving) return;
 
 

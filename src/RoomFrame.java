@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 鸡腿子
@@ -9,7 +11,9 @@ public class RoomFrame extends Frame {
 
 
     static final int GAME_WIDTH = 1080, GAME_HEIGHT = 960;//抽象为常量 更改一个位置即可
-    YouSelf ys = new YouSelf(200, 200, Dir.RIGHT, this);
+    YouSelf ys = new YouSelf(200, 500, Dir.RIGHT, this);
+
+    List<Bed> beds = new ArrayList<>();//设置床的数组
 
 
     public RoomFrame() {//窗口设置
@@ -49,11 +53,15 @@ public class RoomFrame extends Frame {
     public void paint(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
-        //g.drawString("床的数量" + Bed.size(), 10, 60);
+        g.drawString("床的数量" + beds.size(), 10, 60);
         g.setColor(c);
 
 
         ys.paint(g);//人物绘制
+
+        for (int i = 0; i < beds.size(); i++) {
+            beds.get(i).paint(g);
+        }
 
 
 //        for (int i = 0; i < bullets.size(); i++) {//人物和床的碰撞
@@ -126,21 +134,17 @@ public class RoomFrame extends Frame {
             else {
 
                 ys.setMoving(true);
-                if (bL) {//主方向是向上或者向下
+                if (bL) //主方向是向上或者向下
                     ys.setDir(Dir.LEFT);
-                    if (bU)
-                        ys.setDir(Dir.UP);
-                    if (bD)
-                        ys.setDir(Dir.DOWN);
-                }
-                if (bR) {
+
+                if (bR)
                     ys.setDir(Dir.RIGHT);
 
-                    if (bU)
-                        ys.setDir(Dir.UP);
-                    if (bD)
-                        ys.setDir(Dir.DOWN);
-                }
+                if (bU)
+                    ys.setDir(Dir.UP);
+
+                if (bD)
+                    ys.setDir(Dir.DOWN);
 
 
             }
