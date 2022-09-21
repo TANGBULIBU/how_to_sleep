@@ -6,7 +6,8 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         RoomFrame rf = new RoomFrame();//绘制面板
 
-        for (int i = 0; i < 3; i++) {//初始化床的数量
+        int initBedCount=Integer.parseInt((String)PropertyMgr.get("initBedCount"));
+        for (int i = 0; i <initBedCount ; i++) {//初始化床的数量
             rf.beds.add(new Bed(50+i*200,200,Dir.RIGHT,rf));
         }
 

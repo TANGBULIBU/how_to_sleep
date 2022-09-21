@@ -10,8 +10,16 @@ public class YouSelf {
     private static final int SPEED = 3;
     private RoomFrame rf = null;
 
+    public static int WIDTH = ResourceMgr.BoyU.getWidth();
+    public static int HEIGHT = ResourceMgr.BoyU.getHeight();
+
     private boolean moving = true;
     private boolean living = true;
+
+    /**
+     * rectangle 每次移动需要碰撞检测 也就是有n*m此检测 2mn的新对象 消除这个数据
+     */
+    Rectangle rect = new Rectangle();//记录人物数据
 
 
     public YouSelf(int x, int y, Dir dir, RoomFrame rf) {
@@ -19,6 +27,12 @@ public class YouSelf {
         this.y = y;
         this.dir = dir;
         this.rf = rf;
+
+        //记录人物数据
+        rect.x = this.x;
+        rect.y = this.y;
+        rect.width = WIDTH;
+        rect.height = HEIGHT;
     }
 
     public void paint(Graphics g) {
@@ -66,7 +80,22 @@ public class YouSelf {
                 y -= SPEED;
                 break;
         }
+
+        //边界检测
+        boundCheck();
+
+        //update rect
+        rect.x = this.x;
+        rect.y = this.y;
     }
+
+    private void boundCheck() {
+        if (this.x < 5) x = 5;
+        if (this.y < 20) y = 20;
+        if (this.x > RoomFrame.GAME_WIDTH - YouSelf.WIDTH - 5) x = RoomFrame.GAME_WIDTH - YouSelf.WIDTH - 5;
+        if (this.y > RoomFrame.GAME_HEIGHT - YouSelf.HEIGHT - 5) y = RoomFrame.GAME_HEIGHT - YouSelf.HEIGHT - 5;
+    }
+
 
     public int getX() {
         return x;
