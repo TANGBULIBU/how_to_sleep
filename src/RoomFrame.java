@@ -54,6 +54,7 @@ public class RoomFrame extends Frame {
         Color c = g.getColor();
         g.setColor(Color.WHITE);
         g.drawString("床的数量" + beds.size(), 10, 60);
+        g.drawString("人的位置"+ys.getX()+"  "+ys.getY(),10,80);
         g.setColor(c);
 
 
@@ -61,6 +62,11 @@ public class RoomFrame extends Frame {
 
         for (int i = 0; i < beds.size(); i++) {
             beds.get(i).paint(g);
+        }
+
+        for (int i = 0; i < beds.size(); i++) {
+                beds.get(i).collideWith(ys);
+
         }
 
 

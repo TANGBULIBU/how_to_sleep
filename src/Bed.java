@@ -37,6 +37,18 @@ public class Bed {
         rect.y = this.y;
     }
 
+    public void collideWith(YouSelf youSelf) {//和人物碰撞的关系与或与床的交互
+
+
+        if (rect.intersects(youSelf.rect)) {//对象1，2相交
+
+            int eX = youSelf.getX() + youSelf.WIDTH / 2 ;
+            int eY = youSelf.getY() + youSelf.HEIGHT / 2 ;
+
+        }
+
+    }
+
 
     public  void paint(Graphics g) {
         g.drawImage(ResourceMgr.BedEmpty, x, y, null);
